@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wireless Reliability Fairness Optimization</title>
+<link rel="stylesheet" href="outage.css" type="text/css" >
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+<body>
+
+<table summary="Table for page layout." id="tlayout">
+
+<td id="layout-content">
+
+<div id="toptitle">
+<h1>Wireless Reliability Fairness Optimization</h1>
+</div>
+<p style="text-indent: 2em">We present an algorithm for wireless reliability fairness optimization that optimizes the min-max outage probability first published in <a href="http://www.cs.cityu.edu.hk/~cheewtan/Tan-INFOCOM2011.pdf">INFOCOM 2011</a> (See longer version in <a href="TanTon2015.pdf">IEEE/ACM Transactions on Networking</a>). An overview survey is available in <a href="http://www.nowpublishers.com/article/Details/NET-048">Wireless Network Optimization by Perron-Frobenius Theory</a>.</p>
+
+
+<h2>The Problem Statement</h2>
+<p style="text-indent: 2em">An outage event occurs at the $l$th receiver when the received SINR falls below a given reliability threshold, i.e., $\mbox{SINR}_l(\mathbf{p})<{\beta}_l$ for $l=1,\dots,L$. So we are interested to minimize the worst-case outage probability to ensure reliability fairness, which is formulated as follows :</p>
+
+
+\begin{equation}
+\begin{array}[c]{rl}
+\mbox{minimize} & \displaystyle\max_{l}P(\mbox{SINR}_l(\mathbf{p})<{\beta}_l)\\
+\mbox{subject to} & p\in\mathcal{P}\\
+\mbox{variables:} & \mathbf{p}.
+\end{array}
+\tag{*}
+\end{equation}
+<p>where $\mbox{SINR}_l(\mathbf{p})=R_{ll}G_{ll}p_l/(\sum_{j \ne l}R_{lj}G_{lj}p_j+n_l)$ for all $l$ where $R_{lj},\forall l,j$ are random variables that model fading, and $\mathcal{P}$ models general power constraint set, e.g., a single total power constraint.</p>
+
+<h2>Analytical Solution</h2>
+<p style="text-indent: 2em">Under the Rayleigh fading model, the above nonconvex stochastic program can be simplified because the outage probability (please see <a href="http://www.stanford.edu/~boyd/papers/outage.html">Kandukuri and Boyd TWC 2002</a> for more details) of the $l$th receiver can be given analytically by :</p>
+$$
+\displaystyle P(\mbox{SINR}_l(\mathbf{p})<{\beta}_l)=1-e^{\frac{-v_l\beta_l}{p_l}}\prod_{j\neq{l}}\left(1+\frac{\beta_lF_{lj}p_{j}}{p_l}\right)^{-1}
+$$
+<p>where</p>
+\[F_{lj}=
+\begin{cases}
+  0,&l=j\\
+  G_{lj}/G_{ll},&l\neq{j}.
+\end{cases}\]
+
+$$
+\mathbf{v}=\left(\frac{n_l}{G_{ll}},\cdots,\frac{n_L}{G_{LL}}\right).
+$$
+
+<p style="text-indent: 2em">Next, we give an analytical solution by applying nonnegative matrix theory and nonlinear Perron-Frobenius theory. For illustration, consider the single total power constraint, then the optimal value and solution of (*) are, respectively, given as follows:</p>
+$$
+1-e^{-\rho(\mathbf{B}(\mathbf{p}^\star)+\frac{1}{\bar{p}}\mathbf{v}\mathbf{1}^\top)}
+$$
+$$
+\mathbf{p}^\star=\mathbf{x}(\mathbf{B}(\mathbf{p}^\star)+\frac{1}{\bar{p}}\mathbf{v}\mathbf{1}^\top)
+$$
+<p>where $\mathbf{x}(\cdot)$ is the right eigenvector corresponding to the Perron-Frobenius eigenvalue $\rho(\cdot)$, and we define</p>
+
+\[B_{lj}=
+\begin{cases}
+  0,&l=j\\
+  \frac{p_l}{p_j}\mbox{log}\left(1+\frac{\beta_{l}F_{lj}p_{j}}{p_{l}}\right),&l\neq{j}.
+\end{cases}\]
+
+<p style="text-indent: 2em">Observe that the spectrum of $\mathbf{B}$ and its rank-one perturbation capture the optimality entirely. For details of the proof and general idea, please refer to <a href="http://www.cs.cityu.edu.hk/~cheewtan/Tan-INFOCOM2011.pdf">INFOCOM 2011</a>. Interestingly, this nonlinear Perron-Frobenius theory approach solves an open problem in <a href="http://www.stanford.edu/~boyd/papers/outage.html">Kandukuri and Boyd TWC 2002</a> for the interference-limited special case. </p>
+
+
+<h2>The Algorithm</h2>
+
+
+
+<p style="text-indent: 2em">Using the nonlinear Perron-Frobenius theory, an optimal algorithm is given below to solve the stochastic program (for details: see <a href="http://www.cs.cityu.edu.hk/~cheewtan/Tan-INFOCOM2011.pdf">INFOCOM 2011</a>):</p>
+<p style="text-indent: 5em">1) Update Power $\mathbf{p}(k+1)$:</p>
+<p style="text-indent: 8em">$p_{l}(k+1)=-\mbox{log}P(\mbox{SINR}_l(\mathbf{p}(k))>{\beta}_l)p_{l}(k) \quad \forall \, l$.</p>
+<p style="text-indent: 5em">2) Nomalize Power $\mathbf{p}(k+1)$:</p>
+<p style="text-indent: 8em">$\mathbf{P}(k+1)\leftarrow\displaystyle\frac{\mathbf{p}(k+1)\cdot\bar{p}}{\mathbf{1}^\top\mathbf{p}(k+1)} \quad \mbox{if}\ \mathcal{P}=\{\mathbf{p}\mid\mathbf{1}^\top\mathbf{p}\leq\bar{p}\}$.</p>
+<p style="text-indent: 8em">$\mathbf{P}(k+1)\leftarrow\displaystyle\frac{\mathbf{p}(k+1)\cdot\bar{p}}{\max_{j}p_{j}(k+1)} \quad \mbox{if}\ \mathcal{P}=\{\mathbf{p}\mid p_{l}\leq\bar{p} \quad \forall \, l \}$.</p>
+
+
+
+<h2>The MATLAB Code</h2>
+<p style="text-indent: 2em">The algorithm below is for the stochastic problem with a single total power constraint. It can be easily modified for a general power constraint set. </p>
+<div class="codeblock">
+<div class="blockcontent">
+<pre class="tthl">
+clear;
+<font color="green">
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem parameter initialization
+% L: number of users.
+% G: channel gain.
+% F: nonnegative matrix. F_{lj} = G_{lj} if l ~= j, and F_{lj} = 0 if l = j
+% n: noise vector
+% v: nonnegative vector. v_l = n_l/G_{ll}
+% beta: a vector that is a weight assigned to links to reflect priority.
+% pmax: upper bound of the total power constraints.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+</font>
+L = 4; 
+G = zeros(L,L); 
+F = zeros(L,L);
+n = rand(L,1); 
+v = zeros(L,1); 
+beta = rand(L,1); 
+pmax = 4;
+
+<font color="blue">for</font> l = 1:1:L
+    <font color="blue">for</font> j = 1:1:L
+        <font color="blue">if</font> l~= j
+            G(l,j) = 0.1+0.1*rand(1,1);
+        <font color="blue">else</font>
+            G(l,j) = 0.6+0.3*rand(1,1);
+        <font color="blue">end</font>
+    <font color="blue">end</font>
+<font color="blue">end</font>
+
+<font color="blue">for</font> l = 1:1:L
+    <font color="blue">for</font> j = 1:1:L
+        <font color="blue">if</font> l ~= j
+            F(l,j) = G(l,j);
+        <font color="blue">else</font>
+            F(l,j) = 0;
+        <font color="blue">end</font>
+    <font color="blue">end</font>
+    v(l) = n(l)/G(l,l);
+<font color="blue">end</font>
+
+itenum = 15;
+power_evolution = [];
+p = rand(L,1);
+power_evolution = [power_evolution;p'];
+pnew = zeros(L,1);
+
+<font color="blue">for</font> i = 1:1:itenum 
+    <font color="blue">for</font> l = 1:1:L
+        tmp = 0;
+        <font color="blue">for</font> j = 1:1:L
+    <font color="green">% Algorithm step 1: update power for each user in a distributed way</font> 
+           tmp=tmp+log(1+beta(l)*F(l,j)*p(j)/p(l));;
+        <font color="blue">end</font>
+        pnew(l)=(tmp+v(l)*beta(l)/p(l))*p(l);
+    <font color="blue">end</font>
+    <font color="green">% Algorithm step 2: normalize power centrally at the base station</font>
+    pnew=(pmax/sum(pnew)).*pnew;;
+    power_evolution = [power_evolution;pnew'];
+    p = pnew;
+<font color="blue">end</font>
+
+<font color="green">% plot the power evolution</font> 
+figure
+plot1 = plot(1:1:(itenum+1),power_evolution(:,1),<font color="purple">'-o'</font>,1:1:(itenum+1),power_evolution(:,2),
+        <font color="purple">'-^'</font>,1:1:(itenum+1),power_evolution(:,3),<font color="purple">'-+'</font>,1:1:(itenum+1),power_evolution(:,4),<font color="purple">'-*'</font>,'linewidth',1.5);
+legend(<font color="purple">'User 1'</font>,'<font color="purple">'User 2'</font>,<font color="purple">'User 3'</font>,<font color="purple">'User 4'</font>);
+</pre>
+</div></div>
+
+
+
+
+<h2>A Tiny Numerical Example</h2> 
+<p style="text-indent: 2em">The problem parameters are set randomly in the code above. The following figure, obtained by running the code directly, plots the power evolution for a 4-user case, from which we can see a fast convergence.</p> 
+
+<p><img src="outage.jpg" width="400"></p>
+
+
+
+
+</td>
+</table>
+
+</body>
+</html>

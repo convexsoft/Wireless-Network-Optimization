@@ -1,4 +1,9 @@
 # Wireless-Network-Optimization
 
-\begin{equation} \begin{array}[c]{rl} \mbox{maximize} & \displaystyle\min_{l}\frac{{\mathbf{SINR}}_l(\mathbf{p})}{\beta_l}\\ \mbox{subject to} & \mathbf{1}^\top\mathbf{p}\le\bar{P},\mathbf{p}\geq\mathbf{0}\\ \mbox{variables:} & \mathbf{p}. \end{array} \tag{*} \end{equation}
-where $\mathbf{SINR_l(\mathbf{p})}=G_{ll}p_l/(\sum_{j\ne l} G_{lj}p_j+n_l)$ for all $l$, and $\boldsymbol{\beta}=(\beta_{1},\dots,\beta_{L})^\top \ge 0$ is a given weight vector to reflect priority among users (larger weight means higher priority). A total power budget is given by $\bar{P}$.
+
+## The Problem Statement
+An outage event occurs at the Ith receiver when the received SINR falls below a given reliability threshold, i.e., $\operatorname{SINR}_I(\mathbf{p})<\beta_I$ for $I=1, \ldots, L$. So we are interested to minimize the worst-case outage probability to ensure reliability fairness, which is formulated as follows :
+$\operatorname{minimize} \max _1 P\left(\operatorname{SINR}_1(\mathbf{p})<\beta_l\right)$
+subject to $p \in$
+variables: p.
+where $\operatorname{SINR}_{\mid}(\mathbf{p})=R_{\|} G_{\|} p_l /\left(\sum_{j \neq l} R_{\mid j} G_{\mid j} p_j+n_{\mid}\right)$for all I where $R_{\mid j}, \forall l, j$ are random variables that model fading, and models general power constraint set, e.g., a single total power constraint.

@@ -4,7 +4,7 @@ We present an algorithm for wireless reliability fairness optimization that opti
 
 
 ## 1.1. The Problem Statement
-An outage event occurs at the Ith receiver when the received SINR falls below a given reliability threshold, i.e., $\text{SINR}_I(\mathbf{p})<\beta_I$ for $I=1, \ldots, L$. So we are interested in minimizing the worst-case outage probability to ensure reliability fairness, which is formulated as follows:
+An outage event occurs at the $l$th receiver when the received SINR falls below a given reliability threshold, i.e., $\text{SINR}_l(\mathbf{p})<\beta_l$ for $l=1, \ldots, L$. So we are interested in minimizing the worst-case outage probability to ensure reliability fairness, which is formulated as follows:
 
 $$\text{minimize} \max_l P(\text{SINR}_l(\mathbf{p})<\beta_l)$$
 
@@ -12,7 +12,7 @@ $$\text{subject  to}: \mathbf{p} \in \mathcal{P}$$
 
 $$\text{variables}:   \mathbf{p} .$$
 
-where $\text{SINR}_l(\mathbf{p})=R\_{ll}G\_{ll} p_l/(\sum\_{j \neq l}R\_{lj}G\_{lj}p_j+n\_{l})$ for all $l$ where $R\_{lj}, \forall l, j$ are random variables that model fading, and models general power constraint set, e.g., a single total power constraint.
+where $\text{SINR}_l(\mathbf{p})=R\_{ll}G\_{ll} p_l/(\sum\_{j \neq l}R\_{lj}G\_{lj}p_j+n\_{l})$ for all $l$ where $R\_{lj}, \forall l, j$ are random variables that model fading, and $\mathbf{p} \in \mathcal{P}$ models general power constraint set, e.g., a single total power constraint.
 
 
 
@@ -30,9 +30,9 @@ G\_{lj} / G\_{ll},& i \neq j. \\
 \end{cases}
 $$
 
-$$ \mathbf{v}=(\frac{n_1}{G_{11}}, \cdots, \frac{n_L}{G\_{LL}}) $$
+$$ \mathbf{v}=(\frac{n_1}{G_{11}}, \cdots, \frac{n_L}{G\_{LL}})\^{\top} $$
 
-Next, we give an analytical solution by applying nonnegative matrix theory and nonlinear Perron-Frobenius theory. For illustration, consider the single total power constraint, then the optimal value and solution of (*) are, respectively, given as follows:
+Next, we give an analytical solution by applying nonnegative matrix theory and nonlinear Perron-Frobenius theory. For illustration, consider the single total power constraint, then the optimal value and solution are, respectively, given as follows:
 
 $$1-e\^{-\rho(\mathbf{B}(\mathbf{p}^*)+\frac{1}{\bar{p}} \mathbf{v} \mathbf{1}^{\top})}.$$
 
@@ -51,7 +51,7 @@ $$
 Observe that the spectrum of $\mathbf{B}$ and its rank-one perturbation capture the optimality entirely. For details of the proof and general idea, please refer to [INFOCOM 2011](https://ieeexplore.ieee.org/abstract/document/5935080). Interestingly, this nonlinear Perron-Frobenius theory approach solves an open problem in [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for the interference-limited special case.
 
 ## 1.3. The Algorithm
-Using the nonlinear Perron-Frobenius theory, an optimal algorithm is given below to solve the stochastic program (for details: see INFOCOM 2011):
+Using the nonlinear Perron-Frobenius theory, an optimal algorithm is given below to solve the stochastic program (for details: see [INFOCOM 2011](https://ieeexplore.ieee.org/abstract/document/5935080)):
 1) Update Power $\mathbf{p}(k+1)$:
    
 $$

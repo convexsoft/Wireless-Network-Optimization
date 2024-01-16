@@ -92,7 +92,7 @@ legend('User 1','User 2','User 3','User 4');
 <img src="./outage.jpg" width="410px">
 
 # 2. Max-min Weighted SINR Optimization : Analytical solution and Algorithm
-The analytical solution and a fast algorithm for the max-min weighted SINR optimization presented here has its roots in a series of work published in a [2013 IEEE/ACM Transactions on Networking paper]() and a 2011 IEEE Transactions on Signal Processing paper. An overview survey is available in Wireless Network Optimization by Perron-Frobenius Theory.
+The analytical solution and a fast algorithm for the max-min weighted SINR optimization presented here has its roots in a series of work published in a [2013 IEEE/ACM Transactions on Networking paper](https://ieeexplore.ieee.org/abstract/document/6257509/) and a [2011 IEEE Transactions on Signal Processing paper](https://ieeexplore.ieee.org/abstract/document/5762643/). An overview survey is available in [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
 
 ## 2.1. The Problem Statement
 Maximizing the minimum weighted signal-to-interference-and-noise radio (SINR) under the total power constraint is formulated as follows :
@@ -114,7 +114,7 @@ $$
 
 and denote
 
-$$ \mathbf{v}=(\frac{n_1}{G_{11}}, \cdots, \frac{n_L}{G\_{LL}}), $$
+$$ \mathbf{v}=(\frac{n_1}{G_{11}}, \cdots, \frac{n_L}{G\_{LL}})\^{\top}, $$
 
 $$F\_{l j} = 
 \begin{cases}
@@ -123,7 +123,7 @@ G\_{lj} / G\_{ll}, &i \neq j. \\
 \end{cases}
 $$
 
-The optimal value and solution of $(*)$ are given, respectively, by
+The optimal value and solution are given, respectively, by
 
 $$
 \gamma^*=\frac{1}{\rho({diag}(\boldsymbol{\beta} \cdot \mathbf{v}) \mathbf{B})}
@@ -137,31 +137,24 @@ $$
 
 where $\circ$ denotes Schur product and $\mathbf{x}(\cdot)$ denotes the right eigenvector corresponding to the Perron-Frobenius eigenvalue $\rho(\cdot)$.
 ## 2.3. A Short Proof Using the Classical Linear Perron-Frobenius Theorem
-It can be shown that solving the optimization problem in $(*)$ is equivalent to solving the following fixed-point equation:
+It can be shown that solving the optimization problem is equivalent to solving the following fixed-point equation:
 
 $$
 \frac{1}{\gamma^\*} \mathbf{p}^\*={diag}(\boldsymbol{\beta} \circ \mathbf{v})\left(\mathbf{F} \mathbf{p}^\*+\mathbf{1}\right), \quad \mathbf{1}\^{\top} \mathbf{p}^\*=\bar{P}
 $$
 
-A Short Proof Using the Classical Linear Perron-Frobenius Theorem
-It can be shown that solving the optimization problem in $(*)$ is equivalent to solving the following fixed-point equation:
-
-$$
-\frac{1}{\gamma^\*} \mathbf{p}^\*={diag}(\boldsymbol{\beta} \circ \mathbf{v})\left(\mathbf{F} \mathbf{p}^\*+\mathbf{1}\right), \quad \mathbf{1}^{\top} \mathbf{p}^\*=\bar{P}
-$$
-
 Now, observe that:
 
 $$
-\frac{1}{\gamma^\*} \mathbf{p}^\*={diag}(\boldsymbol{\beta} \circ \mathbf{v})\left(\mathbf{F}+\frac{1}{\bar{P}} \mathbf{1 1}^{\top}\right) \mathbf{p}^\*
+\frac{1}{\gamma^\*} \mathbf{p}^\*={diag}(\boldsymbol{\beta} \circ \mathbf{v})\left(\mathbf{F}+\frac{1}{\bar{P}} \mathbf{1 1}^{\top}\right) \mathbf{p}^\*.
 $$
 
-therefore (∗) can be solved analytically as an eigenvalue problem by the classical linear Perron-Frobenius theorem.
+Therefore the problem can be solved analytically as an eigenvalue problem by the classical linear Perron-Frobenius theorem.
 
 For a different proof, e.g., the nonlinear Perron−Frobenius theory, please see [IEEE/ACM Transactions on Networking in 2013](https://ieeexplore.ieee.org/abstract/document/6257509/) and [IEEE Transactions on Signal Processing in 2011](https://ieeexplore.ieee.org/abstract/document/5762643/).
 
 ## 2.4. The MATLAB Code
-Below is an example of using our matlab code to solve the problem:\\
+Below is an example of using our matlab code to solve the problem:
 
 %======================
 
@@ -238,6 +231,8 @@ $$
 $$
 
 which, notably, maximizes a convex objective function over a closed unbounded convex set.
+
+For more details please see [the 2011 JSAC paper](https://ieeexplore.ieee.org/abstract/document/5701695/). 
 
 ## 3.2 The MATLAB Code 
 

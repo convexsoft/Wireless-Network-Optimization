@@ -4,12 +4,15 @@ We present an algorithm for wireless reliability fairness optimization that opti
 
 
 ## The Problem Statement
-An outage event occurs at the Ith receiver when the received SINR falls below a given reliability threshold, i.e., $SINR_I(\pmb{p})<\beta_I$ for $I=1, \ldots, L$. So we are interested to minimize the worst-case outage probability to ensure reliability fairness, which is formulated as follows :
+An outage event occurs at the Ith receiver when the received SINR falls below a given reliability threshold, i.e., $SINR_I(\pmb{p})<\beta_I$ for $I=1, \ldots, L$. So we are interested in minimizing the worst-case outage probability to ensure reliability fairness, which is formulated as follows :
 
-$${minimize} \max _1 P\left({SINR}_1(\mathbf{p})<\beta_l\right)\\
-subject \;to: \;\;p \in P\\
-variables:\; p.$$
-where ${SINR}_{\mid}(\mathbf{p})=R_{\|} G_{\|} p_l /\left(\sum_{j \neq l} R_{\mid j} G_{\mid j} p_j+n_{\mid}\right)$for all I where $R_{\mid j}, \forall l, j$ are random variables that model fading, and models general power constraint set, e.g., a single total power constraint.
+$minimize \max_l P(SINR_l(\pmb{p})<\beta_l)$
+
+$subject \;to: \;\;\pmb{p} \in P$
+
+$variables:\; p.$
+
+where $SINR_l(\pmb{p}=R_{ll} G_{ll} p_l /(\sum_{j \neq l} R_{lj} G_{lj} p_j+n_{l})$for all $l$ where $R_{lj}, \forall l, j$ are random variables that model fading, and models general power constraint set, e.g., a single total power constraint.
 
 
 ## Analytical Solution

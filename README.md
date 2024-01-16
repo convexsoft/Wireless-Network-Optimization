@@ -7,14 +7,14 @@ We present an algorithm for wireless reliability fairness optimization that opti
 An outage event occurs at the Ith receiver when the received SINR falls below a given reliability threshold, i.e., $SINR_I(\pmb{p})<\beta_I$ for $I=1, \ldots, L$. So we are interested in minimizing the worst-case outage probability to ensure reliability fairness, which is formulated as follows :
 
 
-$$ f(x)=\left\{
-\begin{aligned}
-x & = & \cos(t) \\
-y & = & \sin(t) \\
-z & = & \frac xy
-\end{aligned}
-\right.
 $$
+\begin{cases}
+a_1x+b_1y+c_1z=d_1\\
+a_2x+b_2y+c_2z=d_2\\
+a_3x+b_3y+c_3z=d_3\\
+\end{cases}
+$$
+
 
 
 $\text{minimize} \max_l P(SINR_l(\pmb{p})<\beta_l)$

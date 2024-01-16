@@ -19,7 +19,7 @@ where $\text{SINR}_l(\mathbf{p})=R\_{ll}G\_{ll} p_l/(\sum\_{j \neq l}R\_{lj}G\_{
 ## 1.2. Analytical Solution
 Under the Rayleigh fading model, the above nonconvex stochastic program can be simplified because the outage probability (please see [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for more details) of the Ith receiver can be given analytically by:
 
-$$P(\text{SINR}_l(\mathbf{p})<\beta_l)=1-e^{\frac{-v_l \beta_l}{p_l}} \prod\_{j \neq l}(1+\frac{\beta_l F\_{l j} p_j}{p_l})^{-1}$$
+$$P(\text{SINR}_l(\mathbf{p})<\beta_l)=1-e^{\frac{-v_l \beta_l}{p_l}} \prod\_{j \neq l}(1+\frac{\beta_l F\_{l j} p_j}{p_l})^{-1},$$
 
 where
 
@@ -30,13 +30,13 @@ G\_{lj} / G\_{ll},& i \neq j. \\
 \end{cases}
 $$
 
-$$ \mathbf{v}=(\frac{n_1}{G_{11}}, \cdots, \frac{n_L}{G\_{LL}})\^{\top} $$
+$$ \mathbf{v}=(\frac{n_1}{G_{11}}, \cdots, \frac{n_L}{G\_{LL}})\^{\top}. $$
 
 Next, we give an analytical solution by applying nonnegative matrix theory and nonlinear Perron-Frobenius theory. For illustration, consider the single total power constraint, then the optimal value and solution are, respectively, given as follows:
 
-$$1-e\^{-\rho(\mathbf{B}(\mathbf{p}^*)+\frac{1}{\bar{p}} \mathbf{v} \mathbf{1}^{\top})}.$$
+$$1-e\^{-\rho(\mathbf{B}(\mathbf{p}^*)+\frac{1}{\bar{p}} \mathbf{v} \mathbf{1}^{\top})},$$
 
-$$\mathbf{p}^*=\mathbf{x}(\mathbf{Bp}^\*+\frac{1}{\bar{p}} \mathbf{v} \mathbf{1}^{\top})).$$
+$$\mathbf{p}^*=\mathbf{x}(\mathbf{Bp}^\*+\frac{1}{\bar{p}} \mathbf{v} \mathbf{1}^{\top})),$$
 
 where $\mathbf{x}(\cdot)$ is the right eigenvector corresponding to the Perron-Frobenius eigenvalue $\rho(\cdot)$, and we define
 
@@ -109,7 +109,7 @@ where  $\text{SINR}_l(\mathbf{p})=G\_{ll} p_l/(\sum\_{j \neq l}G\_{lj}p_j+n\_{l}
 Let us define the following nonnegative matrix:
 
 $$
-\mathbf{B}=\mathbf{F}+(1 / \bar{p}) \mathbf{1 1}^{\top}
+\mathbf{B}=\mathbf{F}+(1 / \bar{p}) \mathbf{1 1}^{\top},
 $$
 
 and denote
@@ -126,7 +126,7 @@ $$
 The optimal value and solution are given, respectively, by
 
 $$
-\gamma^*=\frac{1}{\rho({diag}(\boldsymbol{\beta} \cdot \mathbf{v}) \mathbf{B})}
+\gamma^*=\frac{1}{\rho({diag}(\boldsymbol{\beta} \cdot \mathbf{v}) \mathbf{B})},
 $$
 
 and
@@ -140,7 +140,7 @@ where $\circ$ denotes Schur product and $\mathbf{x}(\cdot)$ denotes the right ei
 It can be shown that solving the optimization problem is equivalent to solving the following fixed-point equation:
 
 $$
-\frac{1}{\gamma^\*} \mathbf{p}^\*={diag}(\boldsymbol{\beta} \circ \mathbf{v})\left(\mathbf{F} \mathbf{p}^\*+\mathbf{1}\right), \quad \mathbf{1}\^{\top} \mathbf{p}^\*=\bar{P}
+\frac{1}{\gamma^\*} \mathbf{p}^\*={diag}(\boldsymbol{\beta} \circ \mathbf{v})\left(\mathbf{F} \mathbf{p}^\*+\mathbf{1}\right), \quad \mathbf{1}\^{\top} \mathbf{p}^\*=\bar{P}.
 $$
 
 Now, observe that:

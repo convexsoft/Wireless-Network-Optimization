@@ -89,6 +89,7 @@ legend('User 1','User 2','User 3','User 4');
 
 %======================
 
+<img src="./outage.jpg" width="410px">
 
 # 2. Max-min Weighted SINR Optimization : Analytical solution and Algorithm
 The analytical solution and a fast algorithm for the max-min weighted SINR optimization presented here has its roots in a series of work published in a [2013 IEEE/ACM Transactions on Networking paper]() and a 2011 IEEE Transactions on Signal Processing paper. An overview survey is available in Wireless Network Optimization by Perron-Frobenius Theory.
@@ -160,7 +161,7 @@ therefore (∗) can be solved analytically as an eigenvalue problem by the class
 For a different proof, e.g., the nonlinear Perron−Frobenius theory, please see [IEEE/ACM Transactions on Networking in 2013](https://ieeexplore.ieee.org/abstract/document/6257509/) and [IEEE Transactions on Signal Processing in 2011](https://ieeexplore.ieee.org/abstract/document/5762643/).
 
 ## 2.4. The MATLAB Code
-Below is an example of using our matlab code to solve the stochastic problem with a single total power constraint:\\
+Below is an example of using our matlab code to solve the problem:\\
 
 %======================
 
@@ -182,4 +183,100 @@ plot(1:1:res_len,power_evolution(:,1),'-o',1:1:res_len,power_evolution(:,2),'-^'
 legend('User 1','User 2','User 3','User 4');
 
 %======================
-![abc](maxmin.jpg)
+
+<img src="./maxmin.jpg" width="410px">
+
+# 3. Outer Approximation Algorithm for Sum Rate Maximization Perron-Frobenius Theory.
+
+## 3.1. The Problem Formulation
+
+The weighted sum rate maximization problem in a multiuser Gaussian interference channel subject to affine power constraint can be stated as:
+
+$$
+\text{ maximize } \sum\_{l=1}^L w_l \log \left(1+\text{SINR}_l(\mathbf{p})\right)
+$$
+
+$$
+\text { subject to } \mathbf{a}_l\^{\top} \mathbf{p} \leqslant \bar{p}_l, \quad l=1, \ldots, L, 
+$$
+
+$$
+\text { variables: } \mathbf{p},\quad\quad \quad \quad \quad \quad \quad \quad \quad \quad
+$$
+
+where $\mathbf{w}=(w_1,…,w_L) \geq \mathbf{0}$ is a given probability vector, and $w_l$ is a weight assigned to the $l$th link to reflect priority (a larger weight reflects a higher priority). The power budget constraint set is modeled by the nonnegative vectors $\mathbf{a}_l,l=1,…,L$ and the upper bound $\bar{\mathbf{p}}$.
+
+
+Let us denote $\gamma$ as the SINR vector of the users, i.e., $\gamma=\left(\gamma_1, \ldots, \gamma_L\right)^{\top}>0$. The weighted sum rate maximization problem is equivalent to the following problem:
+
+
+$$
+\text{ maximize }  \sum_{l=1}^L w_l \log (1+\gamma_l) \quad  \quad \quad \quad \quad \quad \quad \quad \quad \quad\quad\quad
+$$
+
+$$
+\text{ subject to } \rho\left({diag}(\gamma)\left(\mathbf{F}+\left(1 / p_l\right) \mathbf{v a}_l\^{\top}\right)\right) \leqslant 1, \quad l=1, \ldots, L, 
+$$
+
+$$
+\text{ variables: } \mathbf{p},\quad\quad \quad \quad \quad \quad \quad \quad \quad \quad\quad\quad\quad\quad\quad\quad\quad
+$$
+
+where $\rho(⋅)$ denotes the Perron-Frobenius eigenvalue function and whose optimal $\gamma$ yields the original optimal $\mathbf{p}$ through a Perron-Frobenius eigenvector relationship. Now, let $\tilde{\mathbf{\gamma}} =\log\mathbf{\gamma}$.
+Then, the weighted sum rate maximization problem can be further rewritten as:
+
+$$
+\text{ maximize }  \sum_{l=1}^L w_l \log \left(1+e^{\tilde{\gamma}_l}\right) \quad\quad \quad \quad \quad \quad \quad \quad \quad \quad\quad\quad\
+$$
+
+$$
+\text{ subject to } \rho(diag(e\^{\tilde{\gamma}})(\mathbf{F}+(1/\bar{p}_l)\mathbf{va}\^{\top}))\leq 0,\quad l=1, \ldots, L,
+$$
+
+$$
+\text{ variables: }\tilde{\gamma},\quad\quad \quad \quad \quad \quad \quad \quad \quad \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+$$
+
+which, notably, maximizes a convex objective function over a closed unbounded convex set.
+
+## 3.2 The MATLAB Code 
+
+Our approach is as follows: The feasible region containing the optimal extreme point is first embedded inside a compact polyhedral convex set (the tightest possible that is ensured by fundamental results in nonnegative matrix theory and the Perron-Frobenius theorem). Infeasible regions are then successively removed from this initial polyhedral set. This method generates a nested sequence of polyhedrons approximating the closed unbounded convex set that yields the global optimal solution $\tilde{\gamma}^*$
+asymptotically from the exterior. Below is an example of using our MATLAB code to solve the problem:
+
+%======================
+
+L = 2;
+
+G = rand(L)+diag(rand(L,1))*2;
+
+n = ones(L,1);
+
+pmax = 2.*ones(L,1)+2.*rand(L,1);
+
+a = rand(L,L);
+
+w = rand(L,1);
+
+w = w./sum(w);
+
+[k,power,power_evolution]=outer_apprx(G,n,w,a,pmax);
+
+set(gca, 'Fontname', 'Times newman', 'Fontsize', 15);
+
+plot(1:1:k,power_evolution(:,1),'-o',1:1:k,power_evolution(:,2),'-^','linewidth',1.5);
+
+legend('User 1','User 2');
+
+xlim([0 k]);
+
+ylim([min(power)-2 max(power)+4]);
+
+%======================
+
+<img src="./outer.jpg" width="410px">
+
+
+
+
+

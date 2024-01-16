@@ -8,7 +8,7 @@ An outage event occurs at the Ith receiver when the received SINR falls below a 
 
 $minimize \max_l P(SINR_l(\pmb{p})<\beta_l)$
 
-$subject \;to: \;\;\pmb{p} \in P$
+$subject \;to: \;\;\pmb{p} \in \mathcal{P}$
 
 $variables:\; p.$
 

@@ -51,7 +51,7 @@ $$
 Observe that the spectrum of $\mathbf{B}$ and its rank-one perturbation capture the optimality entirely. Interestingly, this nonlinear Perron-Frobenius theory approach solves an open problem in [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for the interference-limited special case.
 
 ## 1.3. The Algorithm
-Using the nonlinear Perron-Frobenius theory, an optimal algorithm is given below to solve the stochastic program (for details: see [INFOCOM 2011](https://ieeexplore.ieee.org/abstract/document/5935080)):
+Using the nonlinear Perron-Frobenius theory, an optimal algorithm is given below to solve the stochastic program:
 1) Update Power $\mathbf{p}(k+1)$:
    
 $$
@@ -150,8 +150,6 @@ $$
 $$
 
 Therefore the problem can be solved analytically as an eigenvalue problem by the classical linear Perron-Frobenius theorem.
-
-For a different proof, e.g., the nonlinear Perron−Frobenius theory, please see [IEEE/ACM Transactions on Networking in 2013](https://ieeexplore.ieee.org/abstract/document/6257509/) and [IEEE Transactions on Signal Processing in 2011](https://ieeexplore.ieee.org/abstract/document/5762643/).
 
 ## 2.4. The MATLAB Code
 Below is an example of using our matlab code to solve the problem:

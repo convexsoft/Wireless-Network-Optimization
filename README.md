@@ -1,6 +1,6 @@
 
 # 1. Wireless Reliability Fairness Optimization
-We present an algorithm for wireless reliability fairness optimization that optimizes the min-max outage probability first published in [INFOCOM 2011](https://ieeexplore.ieee.org/abstract/document/5935080) (See longer version in [IEEE/ACM Transactions on Networking](https://ieeexplore.ieee.org/abstract/document/7131593/)). An overview survey is available in [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+For more detailed information on the problem and algorithms, please refer to the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
 
 
 ## 1.1. The Problem Statement
@@ -17,7 +17,7 @@ where $\text{SINR}_l(\mathbf{p})=R\_{ll}G\_{ll} p_l/(\sum\_{j \neq l}R\_{lj}G\_{
 
 
 ## 1.2. Analytical Solution
-Under the Rayleigh fading model, the above nonconvex stochastic program can be simplified because the outage probability (please see [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for more details) of the Ith receiver can be given analytically by:
+Under the Rayleigh fading model, the above nonconvex stochastic program can be simplified because the outage probability (please see [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for more details) of the $l$th receiver can be given analytically by:
 
 $$P(\text{SINR}_l(\mathbf{p})<\beta_l)=1-e^{\frac{-v_l \beta_l}{p_l}} \prod\_{j \neq l}(1+\frac{\beta_l F\_{l j} p_j}{p_l})^{-1},$$
 
@@ -48,7 +48,7 @@ $$B\_{l j} =
 $$
 
 
-Observe that the spectrum of $\mathbf{B}$ and its rank-one perturbation capture the optimality entirely. For details of the proof and general idea, please refer to [INFOCOM 2011](https://ieeexplore.ieee.org/abstract/document/5935080). Interestingly, this nonlinear Perron-Frobenius theory approach solves an open problem in [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for the interference-limited special case.
+Observe that the spectrum of $\mathbf{B}$ and its rank-one perturbation capture the optimality entirely. Interestingly, this nonlinear Perron-Frobenius theory approach solves an open problem in [Kandukuri and Boyd TWC 2002](http://www.stanford.edu/~boyd/papers/outage.html) for the interference-limited special case.
 
 ## 1.3. The Algorithm
 Using the nonlinear Perron-Frobenius theory, an optimal algorithm is given below to solve the stochastic program (for details: see [INFOCOM 2011](https://ieeexplore.ieee.org/abstract/document/5935080)):
@@ -92,7 +92,7 @@ legend('User 1','User 2','User 3','User 4');
 <img src="./outage.jpg" width="410px">
 
 # 2. Max-min Weighted SINR Optimization : Analytical solution and Algorithm
-The analytical solution and a fast algorithm for the max-min weighted SINR optimization presented here has its roots in a series of work published in a [2013 IEEE/ACM Transactions on Networking paper](https://ieeexplore.ieee.org/abstract/document/6257509/) and a [2011 IEEE Transactions on Signal Processing paper](https://ieeexplore.ieee.org/abstract/document/5762643/). An overview survey is available in [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+For more detailed information on the problem and algorithms, please refer to the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
 
 ## 2.1. The Problem Statement
 Maximizing the minimum weighted signal-to-interference-and-noise radio (SINR) under the total power constraint is formulated as follows :
@@ -181,6 +181,8 @@ legend('User 1','User 2','User 3','User 4');
 
 # 3. Outer Approximation Algorithm for Sum Rate Maximization Perron-Frobenius Theory.
 
+For more detailed information on the problem and algorithms, please refer to the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+
 ## 3.1. The Problem Formulation
 
 The weighted sum rate maximization problem in a multiuser Gaussian interference channel subject to affine power constraint can be stated as:
@@ -232,7 +234,6 @@ $$
 
 which, notably, maximizes a convex objective function over a closed unbounded convex set.
 
-For more details please see [the 2011 JSAC paper](https://ieeexplore.ieee.org/abstract/document/5701695/). 
 
 ## 3.2 The MATLAB Code 
 

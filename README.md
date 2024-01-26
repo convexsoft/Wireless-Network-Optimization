@@ -1,7 +1,7 @@
 
 # 1. Wireless Reliability Fairness Optimization
-For more detailed information on the problem and algorithms, please refer to the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
 
+The following problem is found in Chapter 3 of the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
 
 ## 1.1. The Problem Statement
 An outage event occurs at the $l$th receiver when the received SINR falls below a given reliability threshold, i.e., $\text{SINR}_l(\mathbf{p})<\beta_l$ for $l=1, \ldots, L$. So we are interested in minimizing the worst-case outage probability to ensure reliability fairness, which is formulated as follows:
@@ -92,7 +92,9 @@ legend('User 1','User 2','User 3','User 4');
 <img src="./outage.jpg" width="410px">
 
 # 2. Max-min Weighted SINR Optimization : Analytical solution and Algorithm
-For more detailed information on the problem and algorithms, please refer to the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+
+The following problem is found in Chapter 3 of the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+
 
 ## 2.1. The Problem Statement
 Maximizing the minimum weighted signal-to-interference-and-noise radio (SINR) under the total power constraint is formulated as follows :
@@ -179,7 +181,8 @@ legend('User 1','User 2','User 3','User 4');
 
 # 3. Outer Approximation Algorithm for Sum Rate Maximization Perron-Frobenius Theory.
 
-For more detailed information on the problem and algorithms, please refer to the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+The following problem is found in Chapter 5 of the monograph [Wireless Network Optimization by Perron-Frobenius Theory](https://www.nowpublishers.com/article/Details/NET-048).
+
 
 ## 3.1. The Problem Formulation
 
